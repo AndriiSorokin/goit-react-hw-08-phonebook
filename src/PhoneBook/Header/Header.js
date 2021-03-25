@@ -1,10 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// import { logOut } from '../../redux/operations/auth';
+import AuthNav from '../AuthNav';
+import UserMenu from '../UserMenu';
 import style from './Header.module.css';
 
-const Header = () => {
+// import { logOut } from '../../redux/operations/auth';
+
+const Header = ({ isAuthenticated }) => {
   // const token = useSelector(state => state.token);
   // const dispatch = useDispatch();
 
@@ -13,15 +16,10 @@ const Header = () => {
   // };
   return (
     <header className={style.nav}>
-      <NavLink to={'/'} className={style.nav__link}>
+      <NavLink exact to={'/'} className={style.nav__link} activeClassName={style.active}>
         Home
       </NavLink>
-      <NavLink to={'/login'} className={style.nav__link}>
-        Login
-      </NavLink>
-      <NavLink to={'/register'} className={style.nav__link}>
-        Registration
-      </NavLink>
+      {isAuthenticated ? <UserMenu /> : <AuthNav />}
 
       {/* <button onClick={logout}>Log Out</button> */}
     </header>
