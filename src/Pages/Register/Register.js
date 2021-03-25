@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { registerOperation } from '../../redux/operations/auth';
+import { useDispatch } from 'react-redux';
+import { registerOperation } from '../../redux/auth/authOperation';
 
 const initialState = {
   name: '',
@@ -11,22 +11,22 @@ const initialState = {
 const Registration = () => {
   const [form, setForm] = useState({ ...initialState });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const inputHeadler = ({ target }) => {
     const { name, value } = target;
     setForm(state => ({ ...state, [name]: value }));
   };
 
-  // const submit = e => {
-  //   e.preventDefault();
-  //   dispatch(registerOperation(form));
-  // };
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(registerOperation(form));
+  };
 
   return (
     <div>
       <h1>Registration</h1>
-      <form className="registration-form">
+      <form className="registration-form" onSubmit={submitHandler} autoComplete="off">
         <input
           onChange={inputHeadler}
           type="text"

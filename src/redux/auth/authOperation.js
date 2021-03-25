@@ -1,19 +1,18 @@
 import axios from 'axios';
-// export const registerOperation = userData => async dispatch => {
-//   try {
-//     dispatch(loaderOn());
-//     const result = await axios.post(
-//       'https://goit-phonebook-api.herokuapp.com/users/signup',
-//       userData,
-//     );
-//     dispatch(setToken(result.data.token));
-//   } catch (error) {
-//     dispatch(setError('Bad server'));
-//   } finally {
-//     dispatch(loaderOff());
-//   }
-// };
+import authAction from './authAction';
 
+export const registerOperation = userData => async dispatch => {
+  dispatch(authAction.registerRequest());
+  try {
+    const result = await axios.post(
+      'https://goit-phonebook-api.herokuapp.com/users/signup',
+      userData,
+    );
+    dispatch(authAction.registerSuccess(result.data));
+  } catch (error) {
+    dispatch(authAction.registerError(error.message));
+  }
+};
 // export const loginOperation = userData => async dispatch => {
 //   try {
 //     dispatch(loaderOn());
@@ -24,7 +23,7 @@ import axios from 'axios';
 //     dispatch(setToken(result.data.token));
 //   } catch (error) {
 //     dispatch(setError('Bad server'));
-//   } finally { 
+//   } finally {
 //     dispatch(loaderOff());
 //   }
 // };
