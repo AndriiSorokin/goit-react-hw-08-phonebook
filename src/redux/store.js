@@ -23,15 +23,15 @@ const middleware = [
   logger,
 ];
 
-const contactPersistConfig = {
+const authPersistConfig = {
   key: 'token',
   storage,
   whitelist: ['token'],
 };
 const store = configureStore({
   reducer: {
-    auth: authReducer,
-    contacts: persistReducer(contactPersistConfig, userReducer),
+    auth: persistReducer(authPersistConfig, authReducer),
+    contacts: userReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

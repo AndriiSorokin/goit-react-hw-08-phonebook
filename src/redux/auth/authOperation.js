@@ -23,8 +23,8 @@ export const registerOperation = userData => async dispatch => {
   }
 };
 export const loginOperation = userData => async dispatch => {
+  dispatch(authAction.loginRequest());
   try {
-    dispatch(authAction.loginRequest());
     const result = await axios.post('users/login', userData);
     token.set(result.data.token);
     dispatch(authAction.loginSuccess(result.data));
@@ -42,4 +42,21 @@ export const logOut = () => async dispatch => {
   } catch (error) {
     dispatch(authAction.logoutError(error.message));
   }
-}; 
+};
+
+export const getCurrentUser = () => async (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+  if (!persistedToken) {
+    return;
+  }
+  token.set(persistedToken);
+  dispatch(authAction.getCurrentUserRequest());
+  try {
+    const result = await axios.get('user/current');
+    dispatch(authAction.getCurrentUserSuccess(result.data));
+  } catch (error) {
+    dispatch(authAction.getCurrentUserError(error.message));
+  }
+};

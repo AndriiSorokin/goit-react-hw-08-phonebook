@@ -17,6 +17,7 @@ const styles = {
     marginLeft: 'auto',
   },
 };
+
 const AuthNav = () => {
   return (
     <div style={styles.wrapper}>
