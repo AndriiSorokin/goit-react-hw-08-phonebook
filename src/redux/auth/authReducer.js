@@ -9,14 +9,17 @@ const initialUserState = {
 
 const user = createReducer(initialUserState, {
   [authAction.registerSuccess]: (state, { payload }) => payload.user,
+  [authAction.loginSuccess]: (state, { payload }) => payload.user,
 });
 
 const token = createReducer(null, {
   [authAction.registerSuccess]: (state, { payload }) => payload.token,
+  [authAction.loginSuccess]: (state, { payload }) => payload.token,
 });
 
 const error = createReducer(null, {
-  [authAction.registerError] : (state, {payload}) => payload
+  [authAction.registerError]: (state, { payload }) => payload,
+  [authAction.loginError]: (state, { payload }) => payload,
 });
 
 export default combineReducers({

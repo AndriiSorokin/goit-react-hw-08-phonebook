@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginOperation } from '../../redux/operations/auth';
+import { loginOperation } from '../../redux/auth/authOperation';
+
 
 const initialState = {
   email: '',
@@ -9,20 +10,22 @@ const initialState = {
 
 const Login = () => {
   const [form, setForm] = useState({ ...initialState });
+
   const dispatch = useDispatch();
+
   const inputHeadler = ({ target }) => {
     const { name, value } = target;
     setForm(state => ({ ...state, [name]: value }));
   };
 
-  const submit = e => {
+  const submitHandler = e => {
     e.preventDefault();
     dispatch(loginOperation(form));
   };
   return (
     <div>
       <h1>Login</h1>
-      <form className="login-form" onSubmit={submit}>
+      <form className="login-form" onSubmit={submitHandler}>
         <input
           onChange={inputHeadler}
           type="email"
