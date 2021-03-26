@@ -36,7 +36,7 @@ export const loginOperation = userData => async dispatch => {
 export const logOut = tkn => async dispatch => {
   dispatch(authAction.logoutRequest());
   try {
-    await axios.post('/users/logout', null, token.set(tkn));
+    await axios.post('/users/logout', token.set(tkn));
     token.unset();
     dispatch(authAction.logoutSuccess());
   } catch (error) {
