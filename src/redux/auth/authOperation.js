@@ -42,4 +42,4 @@ export const logOut = () => async dispatch => {
   } catch (error) {
     dispatch(authAction.logoutError(error.message));
   }
-};
+}; 
