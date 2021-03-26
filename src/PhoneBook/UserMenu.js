@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../redux/auth/authOperation';
 
 const UserMenu = () => {
-  // const token = useSelector(state => state.auth.token);
-  // console.log(token);
+  const tkn = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
 
   const logout = () => {
-    dispatch(logOut());
+    dispatch(logOut(tkn));
   };
   return (
     <div>

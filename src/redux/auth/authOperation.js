@@ -25,7 +25,7 @@ export const registerOperation = userData => async dispatch => {
 export const loginOperation = userData => async dispatch => {
   dispatch(authAction.loginRequest());
   try {
-    const result = await axios.post('users/login', userData);
+    const result = await axios.post('/users/login', userData);
     token.set(result.data.token);
     dispatch(authAction.loginSuccess(result.data));
   } catch (error) {
@@ -33,10 +33,10 @@ export const loginOperation = userData => async dispatch => {
   }
 };
 
-export const logOut = () => async dispatch => {
+export const logOut = tkn => async dispatch => {
   dispatch(authAction.logoutRequest());
   try {
-    await axios.post('users/logout');
+    await axios.post('/users/logout', null, token.set(tkn));
     token.unset();
     dispatch(authAction.logoutSuccess());
   } catch (error) {
