@@ -7,17 +7,13 @@ const initialState = {
   email: '',
   password: '',
 };
-
 const Login = () => {
   const [form, setForm] = useState({ ...initialState });
-
   const dispatch = useDispatch();
-
   const inputHeadler = ({ target }) => {
     const { name, value } = target;
     setForm(state => ({ ...state, [name]: value }));
   };
-
   const submitHandler = e => {
     e.preventDefault();
     dispatch(loginOperation(form));
