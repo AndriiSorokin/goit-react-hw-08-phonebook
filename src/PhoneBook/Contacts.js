@@ -1,11 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../redux/contactOperations/contactOperations';
+
 import contactSelector from '../redux/contactSelector/contactSelector';
 import style from '../PhoneBook/PhoneBook.module.css';
 
-const Contacts = ({ contacts, deleteNumber }) => {
+const Contacts = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(contactSelector.getVisibleUser);
+
   return (
     <div>
       <ul>
@@ -16,7 +19,7 @@ const Contacts = ({ contacts, deleteNumber }) => {
             </span>
             <button
               className={style.btnDelete}
-              onClick={() => deleteNumber(contact.id)}
+              onClick={() => dispatch(deleteContact(contact.id))}
               type="button"
             >
               delete
@@ -28,22 +31,4 @@ const Contacts = ({ contacts, deleteNumber }) => {
   );
 };
 
-Contacts.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  deleteNumber: PropTypes.func.isRequired,
-};
-
-const mapStatetoProps = state => ({
-  contacts: contactSelector.getVisibleUser(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  deleteNumber: id => dispatch(deleteContact(id)),
-});
-export default connect(mapStatetoProps, mapDispatchToProps)(Contacts);
+export default Contacts;

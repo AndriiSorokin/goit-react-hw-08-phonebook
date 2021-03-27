@@ -1,11 +1,10 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Form from './Form';
 import Contacts from './Contacts';
-import { connect } from 'react-redux';
 import Filter from './Filter';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContact } from '../redux/contactOperations/contactOperations';
-import contactSelector from '../redux/contactSelector/contactSelector';
+
 import style from '../PhoneBook/PhoneBook.module.css';
 
 const PhoneBook = () => {
@@ -23,8 +22,4 @@ const PhoneBook = () => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchNumber: () => dispatch(fetchContact()),
-});
-
-export default connect(null, mapDispatchToProps)(PhoneBook);
+export default PhoneBook;
