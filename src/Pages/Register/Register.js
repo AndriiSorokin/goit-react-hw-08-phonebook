@@ -22,6 +22,7 @@ const Registration = () => {
   const submitHandler = e => {
     e.preventDefault();
     dispatch(registerOperation(form));
+    setForm({ ...initialState });
   };
 
   return (

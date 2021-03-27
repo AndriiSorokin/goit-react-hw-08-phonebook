@@ -22,7 +22,7 @@ const App = () => {
       <Switch>
         <Route exact path={'/'} component={Home} />
         <PublicRoute path={'/login'} restricted redirectTo={'/contacts'} component={Login} />
-        <Route path={'/register'} restricted component={Register} redirectTo={'/contacts'} />
+        <PublicRoute path={'/register'} restricted redirectTo={'/contacts'} component={Register} />
         <PrivateRoute path={'/contacts'} component={PhoneBook} redirectTo="/login" />
       </Switch>
     </>
