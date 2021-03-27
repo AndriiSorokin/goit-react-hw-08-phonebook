@@ -1,75 +1,56 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToList } from '../redux/contactOperations/contactOperations';
-import contactSelector from '../redux/contactSelector/contactSelector';
+import { getAllContact } from '../redux/contactSelector/contactSelector';
 import style from '../PhoneBook/PhoneBook.module.css';
 
-class Form extends Component {
-  state = {
-    name: '',
-    number: '',
+const initialState = {
+  name: '',
+  number: '',
+};
+const Form = () => {
+  const contacts = useSelector(state => getAllContact(state));
+  const dispatch = useDispatch();
+  const [form, setForm] = useState({ ...initialState });
+
+  const inputHandler = ({ target }) => {
+    const { name, value } = target;
+    setForm(state => ({ ...state, [name]: value }));
   };
 
-  inputHandler = ({ target }) => {
-    const { value, name } = target;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  submitHandler = e => {
+  const submitHandler = e => {
     e.preventDefault();
-    const { name } = this.state;
-    const { contacts } = this.props;
-
-    if (contacts.find(contact => contact.name === name)) {
-      alert(`${name} is alredy contact!`);
-      this.reset();
+    console.log('hello');
+    if (contacts.find(contact => contact.name === form.name)) {
+      alert(`${form.name} is alredy contact!`);
       return;
     } else {
-      this.props.onSubmit(this.state);
-      this.reset();
+      dispatch(addToList(form));
+      setForm({ ...initialState });
     }
   };
 
-  reset = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
+  return (
+    <form className={style.form} onSubmit={submitHandler} autoComplete="off">
+      <input
+        onChange={inputHandler}
+        placeholder="Enter name"
+        type="text"
+        name="name"
+        value={form.name}
+      ></input>
+      <input
+        onChange={inputHandler}
+        placeholder="Enter phone"
+        type="text"
+        name="number"
+        value={form.number}
+      ></input>
+      <button className={style.btn} type="submit">
+        Add contacts
+      </button>
+    </form>
+  );
+};
 
-  render() {
-    const { name, number } = this.state;
-    return (
-      <form className={style.form} onSubmit={this.submitHandler} autoComplete="off">
-        <input
-          onChange={this.inputHandler}
-          placeholder="Enter name"
-          type="text"
-          name="name"
-          value={name}
-        ></input>
-        <input
-          onChange={this.inputHandler}
-          placeholder="Enter phone"
-          type="text"
-          name="number"
-          value={number}
-        ></input>
-        <button className={style.btn} type="submit">
-          Add contacts
-        </button>
-      </form>
-    );
-  }
-}
-
-const mapStatetoProps = state => ({
-  contacts: contactSelector.getVisibleUser(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  onSubmit: payload => dispatch(addToList(payload)),
-});
-export default connect(mapStatetoProps, mapDispatchToProps)(Form);
+export default Form;
