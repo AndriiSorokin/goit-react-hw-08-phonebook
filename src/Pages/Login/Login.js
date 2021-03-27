@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginOperation } from '../../redux/auth/authOperation';
-
+import style from './Login.module.css';
 
 const initialState = {
   email: '',
@@ -24,8 +24,8 @@ const Login = () => {
   };
   return (
     <div>
-      <h1>Login</h1>
-      <form className="login-form" onSubmit={submitHandler}>
+      <h1 className={style.title}>Login</h1>
+      <form className={style.loginForm} onSubmit={submitHandler}>
         <input
           onChange={inputHeadler}
           type="email"

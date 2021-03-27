@@ -9,9 +9,8 @@ import { getCurrentUser } from './redux/auth/authOperation';
 
 const App = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getCurrentUser);
+    dispatch(getCurrentUser());
   }, []);
 
   return (

@@ -45,16 +45,14 @@ export const logOut = tkn => async dispatch => {
 };
 
 export const getCurrentUser = () => async (dispatch, getState) => {
-  const {
-    auth: { token: persistedToken },
-  } = getState();
+  const persistedToken = getState().auth.token;
   if (!persistedToken) {
     return;
   }
   token.set(persistedToken);
   dispatch(authAction.getCurrentUserRequest());
   try {
-    const result = await axios.get('user/current');
+    const result = await axios.get('/users/current');
     dispatch(authAction.getCurrentUserSuccess(result.data));
   } catch (error) {
     dispatch(authAction.getCurrentUserError(error.message));
