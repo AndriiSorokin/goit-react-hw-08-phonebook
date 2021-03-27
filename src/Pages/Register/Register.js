@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerOperation } from '../../redux/auth/authOperation';
+import style from './Register.module.css';
 
 const initialState = {
   name: '',
@@ -25,8 +26,8 @@ const Registration = () => {
 
   return (
     <div>
-      <h1>Registration</h1>
-      <form className="registration-form" onSubmit={submitHandler} autoComplete="off">
+      <h1 className={style.title}>Registration</h1>
+      <form className={style.regForm} onSubmit={submitHandler} autoComplete="off">
         <input
           onChange={inputHeadler}
           type="text"

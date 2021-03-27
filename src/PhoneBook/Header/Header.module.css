@@ -1,7 +1,7 @@
 .nav {
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 20px;
   background-color: rgba(8, 8, 135, 0.884);
 }
 

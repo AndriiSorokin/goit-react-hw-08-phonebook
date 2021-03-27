@@ -3,14 +3,15 @@
   margin-bottom: 40px;
   text-align: center;
 }
-.loginForm {
+
+.regForm {
   justify-content: center;
   flex-direction: column;
-width: 400px;
+  width: 400px;
   margin: auto;
 }
 
-.loginForm input {
+.regForm input {
   width: 400px;
   display: block;
   margin-bottom: 30px;
@@ -18,8 +19,8 @@ width: 400px;
   font-size: 20px;
 }
 
-.loginForm button {
-      display: block;
+.regForm button {
+  display: block;
   margin: 0 auto;
   width: 100px;
   padding: 10px;

@@ -1,9 +1,10 @@
 import React from 'react';
+import style from './Home.module.css';
 
 const Home = () => {
   return (
     <div>
-      <h1>HELLO</h1>
+      <h1 className={style.title}>Your phone book!</h1>
     </div>
   );
 };
