@@ -6,7 +6,6 @@ import contactSelector from '../redux/contactSelector/contactSelector';
 import style from '../PhoneBook/PhoneBook.module.css';
 
 const Contacts = ({ contacts, deleteNumber }) => {
-  console.log(contacts);
   return (
     <div>
       <ul>
@@ -32,9 +31,9 @@ const Contacts = ({ contacts, deleteNumber }) => {
 Contacts.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     }),
   ).isRequired,
   deleteNumber: PropTypes.func.isRequired,

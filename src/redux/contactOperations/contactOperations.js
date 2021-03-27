@@ -20,10 +20,10 @@ export const fetchContact = () => dispatch => {
     .catch(error => dispatch(fetchContactError(error)));
 };
 
-export const addToList = ({ name, phone }) => dispatch => {
+export const addToList = ({ name, number }) => dispatch => {
   const contact = {
     name,
-    phone,
+    number,
   };
   dispatch(addContactRequest());
   axios

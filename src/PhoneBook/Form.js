@@ -7,7 +7,7 @@ import style from '../PhoneBook/PhoneBook.module.css';
 class Form extends Component {
   state = {
     name: '',
-    phone: '',
+    number: '',
   };
 
   inputHandler = ({ target }) => {
@@ -35,12 +35,12 @@ class Form extends Component {
   reset = () => {
     this.setState({
       name: '',
-      phone: '',
+      number: '',
     });
   };
 
   render() {
-    const { name, phone } = this.state;
+    const { name, number } = this.state;
     return (
       <form className={style.form} onSubmit={this.submitHandler} autoComplete="off">
         <input
@@ -54,8 +54,8 @@ class Form extends Component {
           onChange={this.inputHandler}
           placeholder="Enter phone"
           type="text"
-          name="phone"
-          value={phone}
+          name="number"
+          value={number}
         ></input>
         <button className={style.btn} type="submit">
           Add contacts
