@@ -36,6 +36,8 @@ ul li {
 }
 
 .btnDelete {
+  background : none;
+  color: black;
     font-size: 16px;
   border-radius: 10px;
   border: none;
@@ -43,6 +45,7 @@ ul li {
   transition: ease 0.3s;
 }
 .btnDelete:hover {
+  cursor: pointer;
   border-radius: 10px;
   color: white;
   background-color: rgb(19, 19, 1);
